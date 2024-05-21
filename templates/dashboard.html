@@ -1,0 +1,82 @@
+{% include 'base.html' %}
+{% include 'navigation.html'%}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+.header {
+  padding: 2px;
+  font-size: 20px;
+  text-align: center;
+  background: white;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+h1{
+  font-size: 60px;
+}
+</style>
+</head>
+{% block content %}
+<body>
+<div class="header">
+  <h1><strong>Isaac's Blog</strong></h1>
+  <h3><i>we keep you updated with hottest news</i></h3>
+  <a href="register"><button>Register</button></a>
+  <br>
+  <br>
+  <a href="login"><button>Login</button></a>
+  {% endif %}
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    {% for post in posts reversed %} <!--reversed: helps to place the last post first-->
+    <div class="card">
+      <!-- The href points to the specified urls in the urls.py of an app -->
+      <a style="text-decoration: none; color: black;" href="/post/{{post.id}}">
+        <h2>{{post.title}}</h2> 
+        <h5>{{post.created_at}}</h5>
+        <p>{{post.body|truncatewords:20}}</p><!--post.body posts the entire body.-->
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
+</body>
+</html>
+ 

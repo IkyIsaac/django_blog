@@ -1,0 +1,52 @@
+{% include 'base.html' %}
+{% include 'navigation.html' %}
+<style>
+    h3{
+        color: red;
+    }
+    .contain{
+        text-align: center;
+        font-family: Arial;
+        padding: 100px;
+        background: #f1f1f1;
+        height: 100vh;
+        
+}
+.login{
+    width: 500px;
+    height: auto;
+    text-align: center;
+    border-style: groove;
+    background-color: #f1f1f19f;
+    border-radius: 10px;
+    position: fixed;
+    top: 5rem;
+    padding: 50px;
+
+    }
+</style>
+<div class="contain">
+    <div class="login">
+        <h1 style="color: blueviolet;"><strong>Login Now</strong></h1>
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+        <form action="login" method="POST">
+            {% csrf_token %}
+            <p>Username</p>
+            <input type="text" class="form-control" name="username"/>
+            <p>Password: </p>
+            <input type="password" class="form-control" name="password"/>
+            <br>
+            <input type="submit" class="form-control btn btn-primary" value="login">
+        </form>
+        <form action="register" method="POST">
+            {% csrf_token %}
+            <br><br><br>
+        <a href="register">
+            <button style="color: darkslategray;" type="button" class=" btn btn-primary">Signup</button>
+        </a>
+        </form>
+    </div>
+</div>
+

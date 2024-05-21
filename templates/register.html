@@ -1,0 +1,32 @@
+{% include 'base.html' %}
+<style>
+    h4{
+        color: red;
+    }
+    div{
+        text-align: center;
+        font-family: Arial;
+        padding: 100px;
+        background: #f1f1f1;
+}
+
+</style>
+<div class="text-center">
+    <h1 style="color: blueviolet;" class="text-center">Sign up here</h1>
+    {% for message in messages %}
+    <h4>{{message}}</h4>
+    {% endfor %}
+    <form action="register" method="POST">
+        {% csrf_token %}
+        <p>Enter Username</p>
+        <input type="text" class="form-control" name="username">
+        <p>Enter email</p>
+        <input type="email" class="form-control" name="email">
+        <p>Password</p>
+        <input type="password" class="form-control" name="password">
+        <p>Repeat Password</p>
+        <input type="password" class="form-control" name="password2">
+        <br>
+        <input type="submit" class="btn btn-primary" value="submit">
+    </form>
+</div>
